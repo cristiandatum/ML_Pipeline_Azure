@@ -1,4 +1,5 @@
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 import argparse
 import os
 import numpy as np
@@ -56,14 +57,14 @@ def main():
     # Data is located at:
     url_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-    ds = Dataset.File.from_files(path = url_path)
+    ds = Dataset.Tabular.from_delimited_files(path=url_path)
     
     x, y = clean_data(ds)
 
-    x.shape
     # TODO: Split data into train and test sets.
 
-    ### YOUR CODE HERE ###a
+    ### YOUR CODE HERE ###
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
 
