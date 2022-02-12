@@ -9,6 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
+from azureml.core.dataset import Dataset
 
 def clean_data(data):
     # Dict for cleaning data
@@ -53,12 +54,13 @@ def main():
 
     # TODO: Create TabularDataset using TabularDatasetFactory
     # Data is located at:
-    # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+    url_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-    ds = ### YOUR CODE HERE ###
+    ds = Dataset.File.from_files(path = url_path)
     
     x, y = clean_data(ds)
 
+    x.shape
     # TODO: Split data into train and test sets.
 
     ### YOUR CODE HERE ###a
